@@ -1,6 +1,10 @@
 package datastructures
 
-import "testing"
+import (
+	"testing"
+
+	"github.com/stretchr/testify/assert"
+)
 
 func TestCountGreaterThanPreviousAverage(t *testing.T) {
 	tests := []struct {
@@ -68,10 +72,7 @@ func TestCountGreaterThanPreviousAverage(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			result := CountGreaterThanPreviousAverage(tt.responseTimes)
-			if result != tt.expected {
-				t.Errorf("CountGreaterThanPreviousAverage(%v) = %d, want %d",
-					tt.responseTimes, result, tt.expected)
-			}
+			assert.Equal(t, tt.expected, result, "input: %v", tt.responseTimes)
 		})
 	}
 }
