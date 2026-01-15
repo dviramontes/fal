@@ -64,7 +64,7 @@ const (
 )
 
 type TimeSeries struct {
-	Dates  []int64   // Unix timestamps
+	Dates  []int64 // Unix timestamps
 	Values []float64
 }
 

@@ -25,6 +25,29 @@ package datastructures
 // Hint: Track running sum to calculate average in O(1) per element
 
 func CountGreaterThanPreviousAverage(responseTimes []int32) int32 {
-	// TODO: Implement this
-	return 0
+	var count int32
+	var window []int32
+
+	if len(responseTimes) <= 1 {
+		return 0
+	}
+
+	window = append(window, responseTimes[0])
+	for _, v := range responseTimes[1:] {
+		average := calcAverage(window)
+		if v > average {
+			count++
+		}
+		window = append(window, v)
+	}
+	return count
+}
+
+func calcAverage(nums []int32) int32 {
+	var sum int64
+	for _, n := range nums {
+		sum += int64(n)
+	}
+
+	return int32(sum / int64(len(nums)))
 }
