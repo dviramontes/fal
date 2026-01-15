@@ -1,3 +1,3 @@
-module boosted-ai-practice
+module bai
 
 go 1.23

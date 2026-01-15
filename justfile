@@ -1,4 +1,4 @@
-# Boosted.ai Interview Practice - Go Exercises
+# BAI - Go Exercises
 
 # Default recipe - show available commands
 default:
@@ -87,7 +87,7 @@ watch-financial:
 # Show exercise summary
 exercises:
     @echo ""
-    @echo "=== BOOSTED.AI INTERVIEW PRACTICE ==="
+    @echo "=== BAI PRACTICE ==="
     @echo ""
     @echo "01_data_structures/"
     @echo "  - Sliding Window Maximum (sliding_window.go)"

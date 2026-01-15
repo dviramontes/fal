@@ -19,9 +19,12 @@ package datastructures
 //   0 <= responseTimes.length <= 1000
 //   1 <= responseTimes[i] <= 10^9
 //
+// Note: Uses int32 to match HackerRank problem format.
+// Be careful with integer overflow when summing - you may need int64 for the running sum.
+//
 // Hint: Track running sum to calculate average in O(1) per element
 
-func CountGreaterThanPreviousAverage(responseTimes []int) int {
+func CountGreaterThanPreviousAverage(responseTimes []int32) int32 {
 	// TODO: Implement this
 	return 0
 }
