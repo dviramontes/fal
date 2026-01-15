@@ -6,7 +6,11 @@ default:
 
 # Run all tests
 test:
-    go test ./... -v
+    gotestsum --format testname ./...
+
+# Run all tests (compact dots format)
+test-dots:
+    gotestsum --format dots ./...
 
 # Run tests with coverage
 test-coverage:
@@ -16,28 +20,24 @@ test-coverage:
 
 # Run a specific exercise module
 test-ds:
-    @echo "=== Data Structures & Algorithms ==="
-    go test ./01_data_structures/... -v
+    gotestsum --format testname ./01_data_structures/...
 
 test-concurrency:
-    @echo "=== Concurrency Patterns ==="
-    go test ./02_concurrency/... -v
+    gotestsum --format testname ./02_concurrency/...
 
 test-data:
-    @echo "=== Data Processing ==="
-    go test ./03_data_processing/... -v
+    gotestsum --format testname ./03_data_processing/...
 
 test-financial:
-    @echo "=== Financial Domain ==="
-    go test ./04_financial/... -v
+    gotestsum --format testname ./04_financial/...
 
 # Run a single test by name (e.g., just test-one TestLRUCache)
 test-one NAME:
-    go test ./... -v -run {{NAME}}
+    gotestsum --format testname -- -run {{NAME}} ./...
 
 # Run tests in short mode (skip long-running tests)
 test-short:
-    go test ./... -v -short
+    gotestsum --format testname -- -short ./...
 
 # Run benchmarks
 bench:
@@ -45,7 +45,7 @@ bench:
 
 # Check for race conditions
 test-race:
-    go test ./... -race
+    gotestsum --format testname -- -race ./...
 
 # Format all code
 fmt:
@@ -67,22 +67,22 @@ build:
 clean:
     rm -f coverage.out coverage.html
 
-# Watch tests (requires entr: brew install entr)
+# Watch tests (uses gotestsum's built-in watch mode)
 watch:
-    find . -name '*.go' | entr -c go test ./... -v
+    gotestsum --watch --format testname ./...
 
 # Practice workflow: run single module tests in watch mode
 watch-ds:
-    find ./01_data_structures -name '*.go' | entr -c go test ./01_data_structures/... -v
+    gotestsum --watch --format testname ./01_data_structures/...
 
 watch-concurrency:
-    find ./02_concurrency -name '*.go' | entr -c go test ./02_concurrency/... -v
+    gotestsum --watch --format testname ./02_concurrency/...
 
 watch-data:
-    find ./03_data_processing -name '*.go' | entr -c go test ./03_data_processing/... -v
+    gotestsum --watch --format testname ./03_data_processing/...
 
 watch-financial:
-    find ./04_financial -name '*.go' | entr -c go test ./04_financial/... -v
+    gotestsum --watch --format testname ./04_financial/...
 
 # Show exercise summary
 exercises:
