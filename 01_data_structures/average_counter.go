@@ -25,6 +25,7 @@ package datastructures
 // Hint: Track running sum to calculate average in O(1) per element
 
 func CountGreaterThanPreviousAverage(responseTimes []int32) int32 {
-	// TODO: Implement this
-	return 0
+	var count int32
+	// TODO
+	return count
 }

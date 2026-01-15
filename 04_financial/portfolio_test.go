@@ -149,9 +149,9 @@ func TestVWAPCalculator(t *testing.T) {
 			t.Fatal("NewVWAPCalculator returned nil")
 		}
 
-		v.AddTrade(100.0, 100)  // $10,000
-		v.AddTrade(102.0, 200)  // $20,400
-		v.AddTrade(99.0, 100)   // $9,900
+		v.AddTrade(100.0, 100) // $10,000
+		v.AddTrade(102.0, 200) // $20,400
+		v.AddTrade(99.0, 100)  // $9,900
 
 		// VWAP = (10000 + 20400 + 9900) / 400 = 40300 / 400 = 100.75
 		expected := 100.75

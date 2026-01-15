@@ -75,34 +75,34 @@ func TestDrawdownCalculator(t *testing.T) {
 
 func TestKellyFraction(t *testing.T) {
 	tests := []struct {
-		name        string
-		winProb     float64
+		name         string
+		winProb      float64
 		winLossRatio float64
-		expected    float64
+		expected     float64
 	}{
 		{
-			name:        "favorable bet",
-			winProb:     0.6,
+			name:         "favorable bet",
+			winProb:      0.6,
 			winLossRatio: 1.0,
-			expected:    0.2, // 0.6 - 0.4/1.0 = 0.2
+			expected:     0.2, // 0.6 - 0.4/1.0 = 0.2
 		},
 		{
-			name:        "coin flip even odds",
-			winProb:     0.5,
+			name:         "coin flip even odds",
+			winProb:      0.5,
 			winLossRatio: 1.0,
-			expected:    0.0, // 0.5 - 0.5/1.0 = 0
+			expected:     0.0, // 0.5 - 0.5/1.0 = 0
 		},
 		{
-			name:        "good win ratio",
-			winProb:     0.4,
+			name:         "good win ratio",
+			winProb:      0.4,
 			winLossRatio: 2.0,
-			expected:    0.1, // 0.4 - 0.6/2.0 = 0.1
+			expected:     0.1, // 0.4 - 0.6/2.0 = 0.1
 		},
 		{
-			name:        "negative kelly (clamped)",
-			winProb:     0.3,
+			name:         "negative kelly (clamped)",
+			winProb:      0.3,
 			winLossRatio: 1.0,
-			expected:    0.0, // Would be -0.4, clamped to 0
+			expected:     0.0, // Would be -0.4, clamped to 0
 		},
 	}
 
