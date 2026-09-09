@@ -1,4 +1,4 @@
-# BAI - Go Exercises
+# Falcon - Go Exercises
 
 # Default recipe - show available commands
 default:
@@ -87,7 +87,7 @@ watch-financial:
 # Show exercise summary
 exercises:
     @echo ""
-    @echo "=== BAI PRACTICE ==="
+    @echo "=== FALCON PRACTICE ==="
     @echo ""
     @echo "01_data_structures/"
     @echo "  - Sliding Window Maximum (sliding_window.go)"

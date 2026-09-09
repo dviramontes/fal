@@ -1,4 +1,4 @@
-# BAI - Go Interview Practice
+# Falcon
 
 A collection of Go programming exercises focused on data structures, concurrency patterns, and financial domain problems. Each exercise includes comprehensive tests - implement the functions to make the tests pass.
 
@@ -13,7 +13,7 @@ A collection of Go programming exercises focused on data structures, concurrency
 ```bash
 # Clone the repository
 git clone <repo-url>
-cd bai
+cd falcon
 
 # Install dependencies
 go mod tidy
@@ -25,7 +25,7 @@ go install gotest.tools/gotestsum@latest
 ## Project Structure
 
 ```
-bai/
+falcon/
 ├── 01_data_structures/    # Classic data structure problems
 ├── 02_concurrency/        # Go concurrency patterns
 ├── 03_data_processing/    # Stream and batch processing

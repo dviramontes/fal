@@ -34,7 +34,7 @@ just bench             # Run benchmarks
 
 ## Architecture
 
-Module name: `bai` (Go 1.23+)
+Module name: `interviews` (Go 1.23+)
 
 Each numbered directory is a separate package:
 - `datastructures` - Classic DS problems (sliding window, LRU cache, heaps)
