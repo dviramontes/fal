@@ -1,6 +1,6 @@
 # Falcon
 
-A collection of Go programming exercises focused on data structures, concurrency patterns, and financial domain problems. Each exercise includes comprehensive tests - implement the functions to make the tests pass.
+A collection of programming exercises organized by language, focused on data structures, concurrency patterns, and financial domain problems. Go exercises live in `go/`; `odin/` is reserved for future exercises and is currently empty. Each Go exercise includes comprehensive tests - implement the functions to make the tests pass.
 
 ## Prerequisites
 
@@ -16,7 +16,7 @@ git clone <repo-url>
 cd falcon
 
 # Install dependencies
-go mod tidy
+just tidy
 
 # Install gotestsum (for better test output)
 go install gotest.tools/gotestsum@latest
@@ -26,13 +26,19 @@ go install gotest.tools/gotestsum@latest
 
 ```
 falcon/
-├── data_structures/       # Classic data structure problems
-├── concurrency/           # Go concurrency patterns
-├── data_processing/       # Stream and batch processing
-├── financial/             # Financial domain algorithms
-├── Justfile               # Task runner commands
-└── go.mod
+├── go/
+│   ├── data_structures/    # Classic data structure problems
+│   ├── concurrency/        # Go concurrency patterns
+│   ├── data_processing/    # Stream and batch processing
+│   ├── financial/          # Financial domain algorithms
+│   ├── go.mod
+│   └── go.sum
+├── odin/                   # Empty; reserved for future exercises
+├── justfile                # Task runner commands
+└── README.md
 ```
+
+Git does not track empty directories, so `odin/` will appear in fresh clones once it contains files.
 
 ## Exercises
 
@@ -87,11 +93,14 @@ falcon/
 
 This project uses [gotestsum](https://github.com/gotestyourself/gotestsum) for improved test output with better formatting, colors, and failure summaries.
 
+Run `just` commands from the repository root; recipes use `go/` as their working directory. For direct Go commands, first run `cd go`. Exercise file paths below are relative to their topic directory under `go/`.
+
 ### Quick Reference
 
 ```bash
 # Run all tests
 just test
+just test-go          # Explicit Go alias
 
 # Run tests (compact dots format)
 just test-dots

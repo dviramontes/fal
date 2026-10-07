@@ -6,11 +6,14 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 Go interview practice exercises covering data structures, concurrency patterns, and financial domain problems. Each exercise has tests - implement the functions to make them pass.
 
+Exercises are organized by language: `go/` contains the Go module and exercises; `odin/` is currently empty and reserved for future exercises.
+
 ## Commands
 
 ```bash
 # Run all tests
 just test
+just test-go           # Explicit Go alias
 
 # Run specific module tests
 just test-ds           # data_structures
@@ -34,9 +37,9 @@ just bench             # Run benchmarks
 
 ## Architecture
 
-Module name: `interviews` (Go 1.23+)
+Module name: `falcon` (Go 1.23+), rooted at `go/`. Run `just` commands from the repository root; recipes execute in `go/`. Run direct Go commands from `go/`.
 
-Each directory is a separate package:
+Each topic directory under `go/` is a separate package:
 - `datastructures` - Classic DS problems (sliding window, LRU cache, heaps)
 - `concurrency` - Go patterns (worker pool, pub/sub, circuit breaker)
 - `dataprocessing` - Stream/batch processing, event sourcing
@@ -64,4 +67,3 @@ Corresponding `_test.go` files have comprehensive test cases.
 - Provide codee review when ask but don't implement solutions
 - Ignore minor issues or style comments
 - Focus on implementation details but don't over do it
-

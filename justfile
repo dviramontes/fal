@@ -1,5 +1,7 @@
 # Falcon - Go Exercises
 
+set working-directory := "go"
+
 # Default recipe - show available commands
 default:
     @just --list
@@ -7,6 +9,9 @@ default:
 # Run all tests
 test:
     gotestsum --format testname ./...
+
+# Run all Go tests (explicit language entry point)
+test-go: test
 
 # Run all tests (compact dots format)
 test-dots:
@@ -16,7 +21,7 @@ test-dots:
 test-coverage:
     go test ./... -coverprofile=coverage.out
     go tool cover -html=coverage.out -o coverage.html
-    @echo "Coverage report: coverage.html"
+    @echo "Coverage report: go/coverage.html"
 
 # Run a specific exercise module
 test-ds:
@@ -89,7 +94,7 @@ exercises:
     @echo ""
     @echo "=== FALCON PRACTICE ==="
     @echo ""
-    @echo "data_structures/"
+    @echo "go/data_structures/"
     @echo "  - Sliding Window Maximum (sliding_window.go)"
     @echo "  - Moving Average Stream (sliding_window.go)"
     @echo "  - LRU Cache (lru_cache.go)"
@@ -98,7 +103,7 @@ exercises:
     @echo "  - Find Median from Stream (heap_topk.go)"
     @echo "  - Count Greater Than Previous Average (average_counter.go)"
     @echo ""
-    @echo "concurrency/"
+    @echo "go/concurrency/"
     @echo "  - Worker Pool Pattern (worker_pool.go)"
     @echo "  - Rate Limiter (worker_pool.go)"
     @echo "  - Fan-Out Fan-In (fanout_fanin.go)"
@@ -107,7 +112,7 @@ exercises:
     @echo "  - Pub/Sub Broker (pubsub.go)"
     @echo "  - Circuit Breaker (pubsub.go)"
     @echo ""
-    @echo "data_processing/"
+    @echo "go/data_processing/"
     @echo "  - Time-Windowed Aggregation (stream_processor.go)"
     @echo "  - Rolling Statistics (stream_processor.go)"
     @echo "  - Data Deduplication (stream_processor.go)"
@@ -115,7 +120,7 @@ exercises:
     @echo "  - Merge Sorted Iterators (batch_processor.go)"
     @echo "  - Event Sourcing Store (batch_processor.go)"
     @echo ""
-    @echo "financial/"
+    @echo "go/financial/"
     @echo "  - Portfolio Rebalancing (portfolio.go)"
     @echo "  - Order Book (portfolio.go)"
     @echo "  - VWAP Calculator (portfolio.go)"
