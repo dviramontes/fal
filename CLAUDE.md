@@ -13,10 +13,10 @@ Go interview practice exercises covering data structures, concurrency patterns, 
 just test
 
 # Run specific module tests
-just test-ds           # 01_data_structures
-just test-concurrency  # 02_concurrency
-just test-data         # 03_data_processing
-just test-financial    # 04_financial
+just test-ds           # data_structures
+just test-concurrency  # concurrency
+just test-data         # data_processing
+just test-financial    # financial
 
 # Run a single test by name
 just test-one TestLRUCache
@@ -36,7 +36,7 @@ just bench             # Run benchmarks
 
 Module name: `interviews` (Go 1.23+)
 
-Each numbered directory is a separate package:
+Each directory is a separate package:
 - `datastructures` - Classic DS problems (sliding window, LRU cache, heaps)
 - `concurrency` - Go patterns (worker pool, pub/sub, circuit breaker)
 - `dataprocessing` - Stream/batch processing, event sourcing

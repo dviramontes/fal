@@ -1,0 +1,20 @@
+# Go (just test-coverage / go test)
+coverage.out
+coverage.html
+*.test
+
+# Odin / OLS
+*.o
+*.obj
+*.bc
+*.ll
+*.pdb
+*.rdbg
+*.dSYM/
+ols.json
+
+# JetBrains
+.idea/
+
+# macOS
+.DS_Store

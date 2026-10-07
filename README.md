@@ -26,17 +26,17 @@ go install gotest.tools/gotestsum@latest
 
 ```
 falcon/
-├── 01_data_structures/    # Classic data structure problems
-├── 02_concurrency/        # Go concurrency patterns
-├── 03_data_processing/    # Stream and batch processing
-├── 04_financial/          # Financial domain algorithms
+├── data_structures/       # Classic data structure problems
+├── concurrency/           # Go concurrency patterns
+├── data_processing/       # Stream and batch processing
+├── financial/             # Financial domain algorithms
 ├── Justfile               # Task runner commands
 └── go.mod
 ```
 
 ## Exercises
 
-### 01 - Data Structures & Algorithms
+### Data Structures & Algorithms
 
 | Exercise | File | Concepts |
 |----------|------|----------|
@@ -48,7 +48,7 @@ falcon/
 | Find Median from Stream | `heap_topk.go` | Two heaps (max + min) |
 | Count Greater Than Average | `average_counter.go` | Running statistics |
 
-### 02 - Concurrency Patterns
+### Concurrency Patterns
 
 | Exercise | File | Concepts |
 |----------|------|----------|
@@ -59,7 +59,7 @@ falcon/
 | Pub/Sub Broker | `pubsub.go` | Event-driven architecture |
 | Circuit Breaker | `pubsub.go` | Fault tolerance |
 
-### 03 - Data Processing
+### Data Processing
 
 | Exercise | File | Concepts |
 |----------|------|----------|
@@ -69,7 +69,7 @@ falcon/
 | Batch Processor | `batch_processor.go` | Batching, context cancellation |
 | Event Store | `batch_processor.go` | Event sourcing, snapshots |
 
-### 04 - Financial Domain
+### Financial Domain
 
 | Exercise | File | Concepts |
 |----------|------|----------|

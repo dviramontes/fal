@@ -20,16 +20,16 @@ test-coverage:
 
 # Run a specific exercise module
 test-ds:
-    gotestsum --format testname ./01_data_structures/...
+    gotestsum --format testname ./data_structures/...
 
 test-concurrency:
-    gotestsum --format testname ./02_concurrency/...
+    gotestsum --format testname ./concurrency/...
 
 test-data:
-    gotestsum --format testname ./03_data_processing/...
+    gotestsum --format testname ./data_processing/...
 
 test-financial:
-    gotestsum --format testname ./04_financial/...
+    gotestsum --format testname ./financial/...
 
 # Run a single test by name (e.g., just test-one TestLRUCache)
 test-one NAME:
@@ -73,23 +73,23 @@ watch:
 
 # Practice workflow: run single module tests in watch mode
 watch-ds:
-    gotestsum --watch --format testname ./01_data_structures/...
+    gotestsum --watch --format testname ./data_structures/...
 
 watch-concurrency:
-    gotestsum --watch --format testname ./02_concurrency/...
+    gotestsum --watch --format testname ./concurrency/...
 
 watch-data:
-    gotestsum --watch --format testname ./03_data_processing/...
+    gotestsum --watch --format testname ./data_processing/...
 
 watch-financial:
-    gotestsum --watch --format testname ./04_financial/...
+    gotestsum --watch --format testname ./financial/...
 
 # Show exercise summary
 exercises:
     @echo ""
     @echo "=== FALCON PRACTICE ==="
     @echo ""
-    @echo "01_data_structures/"
+    @echo "data_structures/"
     @echo "  - Sliding Window Maximum (sliding_window.go)"
     @echo "  - Moving Average Stream (sliding_window.go)"
     @echo "  - LRU Cache (lru_cache.go)"
@@ -98,7 +98,7 @@ exercises:
     @echo "  - Find Median from Stream (heap_topk.go)"
     @echo "  - Count Greater Than Previous Average (average_counter.go)"
     @echo ""
-    @echo "02_concurrency/"
+    @echo "concurrency/"
     @echo "  - Worker Pool Pattern (worker_pool.go)"
     @echo "  - Rate Limiter (worker_pool.go)"
     @echo "  - Fan-Out Fan-In (fanout_fanin.go)"
@@ -107,7 +107,7 @@ exercises:
     @echo "  - Pub/Sub Broker (pubsub.go)"
     @echo "  - Circuit Breaker (pubsub.go)"
     @echo ""
-    @echo "03_data_processing/"
+    @echo "data_processing/"
     @echo "  - Time-Windowed Aggregation (stream_processor.go)"
     @echo "  - Rolling Statistics (stream_processor.go)"
     @echo "  - Data Deduplication (stream_processor.go)"
@@ -115,7 +115,7 @@ exercises:
     @echo "  - Merge Sorted Iterators (batch_processor.go)"
     @echo "  - Event Sourcing Store (batch_processor.go)"
     @echo ""
-    @echo "04_financial/"
+    @echo "financial/"
     @echo "  - Portfolio Rebalancing (portfolio.go)"
     @echo "  - Order Book (portfolio.go)"
     @echo "  - VWAP Calculator (portfolio.go)"
