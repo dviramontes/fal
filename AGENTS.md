@@ -1,4 +1,4 @@
-# CLAUDE.md
+# AGENTS.md
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
@@ -6,14 +6,15 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 Go interview practice exercises covering data structures, concurrency patterns, and financial domain problems. Each exercise has tests - implement the functions to make them pass.
 
-Exercises are organized by language: `go/` contains the Go module and exercises; `odin/` is currently empty and reserved for future exercises.
+Exercises are organized by language: `go/` contains the Go module and exercises; `odin/data_structures/` contains Odin exercises with adjacent tests. Leave exercise solutions as stubs unless explicitly asked to implement them.
 
 ## Commands
+
+Run the Go commands below from `go/`. In `odin/`, use `just test`, `just test-ds`, or `just exercises`. Each language has its own justfile; there is no root justfile.
 
 ```bash
 # Run all tests
 just test
-just test-go           # Explicit Go alias
 
 # Run specific module tests
 just test-ds           # data_structures
@@ -37,7 +38,7 @@ just bench             # Run benchmarks
 
 ## Architecture
 
-Module name: `falcon` (Go 1.23+), rooted at `go/`. Run `just` commands from the repository root; recipes execute in `go/`. Run direct Go commands from `go/`.
+Module name: `falcon` (Go 1.23+), rooted at `go/`. Run Go `just` recipes and direct Go commands from `go/`; run Odin recipes from `odin/`. From the repository root, select a justfile explicitly with `just --justfile go/justfile test` or `just --justfile odin/justfile test`.
 
 Each topic directory under `go/` is a separate package:
 - `datastructures` - Classic DS problems (sliding window, LRU cache, heaps)

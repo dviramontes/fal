@@ -1,0 +1,22 @@
+# Falcon - Odin Exercises
+
+# Show available commands
+default:
+    @just --list
+
+# Run all Odin tests
+test: test-ds
+
+# Run data structure exercises
+test-ds:
+    odin test data_structures -out:data_structures.test
+
+# Clean generated test binaries
+clean:
+    rm -f data_structures.test
+
+# Show exercise summary
+exercises:
+    @echo "data_structures/"
+    @echo "  - Minutes Until Apocalypse (minutes_until_apocalypse.odin)"
+    @echo "Run 'just test' to see which exercises pass/fail"

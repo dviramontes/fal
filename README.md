@@ -1,10 +1,11 @@
 # Falcon
 
-A collection of programming exercises organized by language, focused on data structures, concurrency patterns, and financial domain problems. Go exercises live in `go/`; `odin/` is reserved for future exercises and is currently empty. Each Go exercise includes comprehensive tests - implement the functions to make the tests pass.
+A collection of programming exercises organized by language, focused on data structures, concurrency patterns, and financial domain problems. Go exercises live in `go/` and Odin exercises in `odin/`. Each exercise includes tests - implement the functions to make the tests pass.
 
 ## Prerequisites
 
 - Go 1.23+
+- [Odin](https://odin-lang.org/docs/install/) (for Odin exercises)
 - [just](https://github.com/casey/just) command runner (recommended)
 - [gotestsum](https://github.com/gotestyourself/gotestsum) for enhanced test output
 
@@ -15,7 +16,8 @@ A collection of programming exercises organized by language, focused on data str
 git clone <repo-url>
 cd falcon
 
-# Install dependencies
+# Install Go dependencies
+cd go
 just tidy
 
 # Install gotestsum (for better test output)
@@ -31,14 +33,20 @@ falcon/
 │   ├── concurrency/        # Go concurrency patterns
 │   ├── data_processing/    # Stream and batch processing
 │   ├── financial/          # Financial domain algorithms
+│   ├── justfile            # Go commands
 │   ├── go.mod
 │   └── go.sum
-├── odin/                   # Empty; reserved for future exercises
-├── justfile                # Task runner commands
+├── odin/
+│   ├── data_structures/    # Grid and data structure problems
+│   └── justfile            # Odin commands
 └── README.md
 ```
 
-Git does not track empty directories, so `odin/` will appear in fresh clones once it contains files.
+### Odin Exercises
+
+`odin/data_structures/minutes_until_apocalypse.odin` contains the Halloween grid infection exercise. Implement `minutes_until_apocalypse(grid: [][]int) -> int` to satisfy the adjacent test file. Tests cover the supplied examples, simultaneous infection, unreachable people, empty grids, and row/column boundaries.
+
+Run `just test` from `odin/` (or `just --justfile odin/justfile test` from the repository root). The stub compiles, but tests intentionally fail until you implement the solution. Tests use Odin's built-in [test runner](https://odin-lang.org/docs/testing/).
 
 ## Exercises
 
@@ -93,14 +101,13 @@ Git does not track empty directories, so `odin/` will appear in fresh clones onc
 
 This project uses [gotestsum](https://github.com/gotestyourself/gotestsum) for improved test output with better formatting, colors, and failure summaries.
 
-Run `just` commands from the repository root; recipes use `go/` as their working directory. For direct Go commands, first run `cd go`. Exercise file paths below are relative to their topic directory under `go/`.
+Each language has its own `justfile`. Run `just test` inside `go/` or `odin/`. From the repository root, use `just --justfile go/justfile test` or `just --justfile odin/justfile test`. The commands below are for Go; first run `cd go` from the repository root. Go exercise file paths are relative to their topic directory under `go/`.
 
 ### Quick Reference
 
 ```bash
 # Run all tests
 just test
-just test-go          # Explicit Go alias
 
 # Run tests (compact dots format)
 just test-dots
@@ -133,7 +140,7 @@ just lint              # Lint code (requires golangci-lint)
 just exercises         # Show exercise summary
 ```
 
-## Workflow
+## Go Workflow
 
 1. Pick an exercise from `just exercises`
 2. Read the problem description and hints in the source file
