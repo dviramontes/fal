@@ -1,70 +1,17 @@
 # AGENTS.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+## Assistance Rules
 
-## Project Overview
+- Leave exercise solutions as stubs unless explicitly asked to implement them. Do not solve exercises just to make tests pass.
+- When asked for a code review, focus on correctness and meaningful implementation issues.
+- Keep review feedback concise and skip minor style comments.
 
-Go interview practice exercises covering data structures, concurrency patterns, and financial domain problems. Each exercise has tests - implement the functions to make them pass.
+## Adding Exercises
 
-Exercises are organized by language: `go/` contains the Go module and exercises; `odin/data_structures/` contains Odin exercises with adjacent tests. Leave exercise solutions as stubs unless explicitly asked to implement them.
+Include a problem description, constraints, examples, hints, and stub functions. Provide matching tests for expected behavior and edge cases.
 
-## Commands
+Follow the source and test layout of the target language. See the [project structure](README.md#project-structure) and [Elixir exercise layout](elixir/README.md#exercise-layout).
 
-Run the Go commands below from `go/`. In `odin/`, use `just test`, `just test-ds`, or `just exercises`. Each language has its own justfile; there is no root justfile.
+## Project Reference
 
-```bash
-# Run all tests
-just test
-
-# Run specific module tests
-just test-ds           # data_structures
-just test-concurrency  # concurrency
-just test-data         # data_processing
-just test-financial    # financial
-
-# Run a single test by name
-just test-one TestLRUCache
-
-# Watch mode (re-runs on file changes)
-just watch
-just watch-ds          # Watch specific module
-
-# Other
-just test-race         # Race condition detection
-just fmt               # Format code
-just lint              # Lint (requires golangci-lint)
-just bench             # Run benchmarks
-```
-
-## Architecture
-
-Module name: `falcon` (Go 1.23+), rooted at `go/`. Run Go `just` recipes and direct Go commands from `go/`; run Odin recipes from `odin/`. From the repository root, select a justfile explicitly with `just --justfile go/justfile test` or `just --justfile odin/justfile test`.
-
-Each topic directory under `go/` is a separate package:
-- `datastructures` - Classic DS problems (sliding window, LRU cache, heaps)
-- `concurrency` - Go patterns (worker pool, pub/sub, circuit breaker)
-- `dataprocessing` - Stream/batch processing, event sourcing
-- `financial` - Portfolio, risk metrics, technical indicators
-
-Tests use [testify](https://github.com/stretchr/testify) for assertions. Test runner is [gotestsum](https://github.com/gotestyourself/gotestsum).
-
-## Exercise Pattern
-
-Each `.go` file contains:
-1. Problem description in comments
-2. Constraints and examples
-3. Implementation hints
-4. Stub functions to implement
-
-## Goals
-
-The primary goal of this project is to get as much practice as I can with the language
-before my interview so I want to work on as many types of problems as possible
-
-Corresponding `_test.go` files have comprehensive test cases.
-
-## Assistance Pattern
-
-- Provide codee review when ask but don't implement solutions
-- Ignore minor issues or style comments
-- Focus on implementation details but don't over do it
+The [README](README.md) owns project goals, prerequisites, setup, and the exercise catalog. Use its [test instructions](README.md#running-tests) for command locations and language-specific workflows.

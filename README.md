@@ -1,28 +1,18 @@
 # Falcon
 
-A collection of programming exercises organized by language, focused on data structures, concurrency patterns, and financial domain problems. Go exercises live in `go/` and Odin exercises in `odin/`. Each exercise includes tests - implement the functions to make the tests pass.
-
-## Prerequisites
-
-- Go 1.23+
-- [Odin](https://odin-lang.org/docs/install/) (for Odin exercises)
-- [just](https://github.com/casey/just) command runner (recommended)
-- [gotestsum](https://github.com/gotestyourself/gotestsum) for enhanced test output
+Interview practice in Go, Odin, and Elixir, covering data structures, concurrency, data processing, and financial algorithms. The goal is hands-on language practice across a broad range of problems.
 
 ## Setup
 
-```bash
-# Clone the repository
-git clone <repo-url>
-cd falcon
+Install the tools for the language you want to practice:
 
-# Install Go dependencies
-cd go
-just tidy
+| Language | Requirements | Setup |
+| --- | --- | --- |
+| Go | Go 1.23+ | From `go/`, run `go mod download` and `go install gotest.tools/gotestsum@latest` |
+| Odin | [Odin](https://odin-lang.org/docs/install/) | No dependency setup required |
+| Elixir | See [Elixir setup](elixir/README.md#setup) | See the language README |
 
-# Install gotestsum (for better test output)
-go install gotest.tools/gotestsum@latest
-```
+Install [just](https://github.com/casey/just) to use the command recipes below.
 
 ## Project Structure
 
@@ -39,16 +29,68 @@ falcon/
 ├── odin/
 │   ├── data_structures/    # Grid and data structure problems
 │   └── justfile            # Odin commands
+├── elixir/
+│   ├── lib/                # Elixir modules
+│   ├── test/               # ExUnit tests
+│   ├── justfile            # Elixir commands
+│   └── mix.exs             # Mix project (no external dependencies)
 └── README.md
 ```
 
-### Odin Exercises
+## Running Tests
 
-`odin/data_structures/minutes_until_apocalypse.odin` contains the Halloween grid infection exercise. Implement `minutes_until_apocalypse(grid: [][]int) -> int` to satisfy the adjacent test file. Tests cover the supplied examples, simultaneous infection, unreachable people, empty grids, and row/column boundaries.
+Each language has its own `justfile`; there is no root justfile. Run `just test` from `go/`, `odin/`, or `elixir/`. Direct language commands also run from their respective directories.
 
-Run `just test` from `odin/` (or `just --justfile odin/justfile test` from the repository root). The stub compiles, but tests intentionally fail until you implement the solution. Tests use Odin's built-in [test runner](https://odin-lang.org/docs/testing/).
+From the repository root, select a justfile explicitly:
 
-## Exercises
+```bash
+just --justfile go/justfile test
+just --justfile odin/justfile test
+just --justfile elixir/justfile test
+```
+
+In any language directory, `just --list` lists commands and `just exercises` lists exercises. Tests for unsolved exercises are expected to fail.
+
+### Go Commands
+
+Go tests use [testify](https://github.com/stretchr/testify) assertions and [gotestsum](https://github.com/gotestyourself/gotestsum) for test output and watch mode.
+
+Run these from `go/`:
+
+```bash
+just test-dots         # Compact test output
+just test-ds           # Data structures
+just test-concurrency
+just test-data         # Data processing
+just test-financial
+just test-one TestLRUCache
+just test-race
+just watch             # Rerun all tests on changes
+just watch-ds          # Watch data structure tests
+just test-coverage     # Generate coverage report
+just bench
+just fmt
+just lint              # Requires golangci-lint
+```
+
+### Odin Commands
+
+Run `just test-ds` from `odin/` to test data structure exercises with Odin's built-in test runner.
+
+### Elixir Commands
+
+See the [Elixir command reference](elixir/README.md#commands) for ExUnit tests, formatting, compilation checks, and interactive sessions.
+
+## Practice Workflow
+
+1. Pick an exercise from `just exercises` in the language directory.
+2. Read its problem description and hints.
+3. Run its tests to see the expected behavior.
+4. Implement the solution and rerun the tests as you work. For Go, watch mode automates reruns.
+
+## Go Exercises
+
+File names below are relative to their topic directory under `go/`. Source files contain the problem statements; adjacent `*_test.go` files define expected behavior.
 
 ### Data Structures & Algorithms
 
@@ -97,68 +139,13 @@ Run `just test` from `odin/` (or `just --justfile odin/justfile test` from the r
 | Technical Indicators | `timeseries.go` | SMA, EMA, RSI, Bollinger Bands |
 | Return Calculations | `timeseries.go` | Simple, log, cumulative returns |
 
-## Running Tests
+## Odin Exercises
 
-This project uses [gotestsum](https://github.com/gotestyourself/gotestsum) for improved test output with better formatting, colors, and failure summaries.
+[Minutes Until Apocalypse](odin/data_structures/minutes_until_apocalypse.odin) is a grid infection exercise. Implement `minutes_until_apocalypse(grid: [][]int) -> int` to satisfy the adjacent tests, which cover simultaneous infection, unreachable people, empty grids, and row/column boundaries.
 
-Each language has its own `justfile`. Run `just test` inside `go/` or `odin/`. From the repository root, use `just --justfile go/justfile test` or `just --justfile odin/justfile test`. The commands below are for Go; first run `cd go` from the repository root. Go exercise file paths are relative to their topic directory under `go/`.
+## Elixir Exercises
 
-### Quick Reference
-
-```bash
-# Run all tests
-just test
-
-# Run tests (compact dots format)
-just test-dots
-
-# Run specific module
-just test-ds           # Data structures
-just test-concurrency  # Concurrency
-just test-data         # Data processing
-just test-financial    # Financial
-
-# Run a single test by name
-just test-one TestLRUCache
-
-# Run with race detector
-just test-race
-
-# Run in watch mode (re-runs on file changes)
-just watch
-just watch-ds          # Watch specific module
-```
-
-### All Commands
-
-```bash
-just --list            # Show all available commands
-just test-coverage     # Generate coverage report
-just bench             # Run benchmarks
-just fmt               # Format code
-just lint              # Lint code (requires golangci-lint)
-just exercises         # Show exercise summary
-```
-
-## Go Workflow
-
-1. Pick an exercise from `just exercises`
-2. Read the problem description and hints in the source file
-3. Start watch mode: `just watch-ds` (or appropriate module)
-4. Implement the solution
-5. Tests will re-run automatically on save
-6. Repeat until all tests pass
-
-## Testing Libraries
-
-This project uses:
-
-- **[testify](https://github.com/stretchr/testify)** - Better assertions with clear failure messages
-- **[gotestsum](https://github.com/gotestyourself/gotestsum)** - Enhanced test runner with:
-  - Colored pass/fail output
-  - Test name formatting
-  - Summary statistics
-  - Built-in watch mode
+See the [Elixir exercise catalog](elixir/README.md#exercises).
 
 ## License
 

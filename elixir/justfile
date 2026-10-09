@@ -1,0 +1,44 @@
+# Falcon - Elixir Exercises
+
+default:
+    @just --list
+
+# Run all ExUnit tests
+test:
+    mix test
+
+# Run data structure exercises
+test-ds:
+    mix test test/falcon/data_structures
+
+# Run a test file or file:line
+test-one TARGET:
+    mix test {{quote(TARGET)}}
+
+# Run tests with coverage
+test-coverage:
+    mix test --cover
+
+# Format Elixir source and tests
+fmt:
+    mix format
+
+# Check formatting, compile with warnings as errors, and run tests
+check:
+    mix format --check-formatted
+    mix compile --warnings-as-errors
+    mix test --warnings-as-errors
+
+# Compile the project
+build:
+    mix compile
+
+# Start an interactive session with the project loaded
+iex:
+    iex -S mix
+
+# Show exercise summary
+exercises:
+    @echo "data_structures/"
+    @echo "  - Minutes Until Apocalypse (lib/falcon/data_structures/minutes_until_apocalypse.ex)"
+    @echo "Run 'just test' to see which exercises pass/fail"
