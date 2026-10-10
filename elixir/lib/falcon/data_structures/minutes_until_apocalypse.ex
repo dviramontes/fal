@@ -12,8 +12,15 @@ defmodule Falcon.DataStructures.MinutesUntilApocalypse do
 
   Examples:
 
-    * `[[2, 1, 1], [1, 1, 0], [0, 1, 1]]` -> `4`
-    * `[[2, 1, 1], [0, 1, 1], [1, 0, 1]]` -> `-1`
+    * `[
+    *     [2, 1, 1],
+    *     [1, 1, 0],
+    *     [0, 1, 1]
+    *  ]` -> `4`
+    * `[  [2, 1, 1],
+    *     [0, 1, 1],
+    *     [1, 0, 1]
+    *  ]` -> `-1`
 
   Assume all rows have the same length and cells contain only 0, 1, or 2.
   The grid is a list of lists. Elixir data is immutable.
@@ -26,8 +33,47 @@ defmodule Falcon.DataStructures.MinutesUntilApocalypse do
   """
 
   @spec minutes_until_apocalypse([[0 | 1 | 2]]) :: integer()
-  def minutes_until_apocalypse(_grid) do
-    # TODO: Implement this.
-    0
+  def minutes_until_apocalypse(grid) do
+    #   reduce over the current minute’s zombie coordinates.
+    #
+    # For each coordinate:
+    #
+    # - Check its four neighbors for living people.
+    # - Collect new infections into the next minute’s batch.
+    # - Ensure the same person isn’t counted twice if two zombies reach them.
+    #
+    # After that reduce finishes, advance one minute and repeat with the new batch.
+    zombies =
+      for {row, i} <- Enum.with_index(grid),
+          {col, ii} <- Enum.with_index(row),
+          col == 2 do
+        {i, ii}
+      end
+
+    zombies
+    |> Enum.reduce({[], 0}, fn {x, y}, {newly_infected, minute} ->
+      # track new infections and advance minute
+      cond do
+        Enum.at(grid)
+      end
+
+      {[], minute + 1}
+    end)
+  end
+
+  def up(row, col) do
+    {row - 1, col}
+  end
+
+  def down(row, col) do
+    {row + 1, col}
+  end
+
+  def left(row, col) do
+    {row, col - 1}
+  end
+
+  def right(row, col) do
+    {row, col + 1}
   end
 end
