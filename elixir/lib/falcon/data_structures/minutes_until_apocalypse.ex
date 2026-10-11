@@ -51,29 +51,31 @@ defmodule Falcon.DataStructures.MinutesUntilApocalypse do
       end
 
     zombies
-    |> Enum.reduce({[], 0}, fn {x, y}, {newly_infected, minute} ->
-      # track new infections and advance minute
-      cond do
-        Enum.at(grid)
+    |> Enum.reduce({[], 0}, fn {x, y} = zombie, {newly_infected, minute} ->
+      # TODO: check new infections
+      # TODO: track new infections and advance minutes
+      new_zombies = cond do
+        1 == Enum.at(grid, top(x, y) |> dbg()) -> zombie
       end
 
-      {[], minute + 1}
+      {[new_zombies | newly_infected], minute + 1}
     end)
+    |> dbg()
   end
 
-  def up(row, col) do
-    {row - 1, col}
+  def top(x, y) do
+    {x - 1, y}
   end
 
-  def down(row, col) do
-    {row + 1, col}
+  def bottom(x, y) do
+    {x + 1, y}
   end
 
-  def left(row, col) do
-    {row, col - 1}
+  def left(x, y) do
+    {x, y - 1}
   end
 
-  def right(row, col) do
-    {row, col + 1}
+  def right(x, y) do
+    {x, y + 1}
   end
 end
