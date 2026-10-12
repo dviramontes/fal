@@ -51,16 +51,59 @@ defmodule Falcon.DataStructures.MinutesUntilApocalypse do
       end
 
     zombies
-    |> Enum.reduce({[], 0}, fn {x, y} = zombie, {newly_infected, minute} ->
-      # TODO: check new infections
-      # TODO: track new infections and advance minutes
-      new_zombies = cond do
-        1 == Enum.at(grid, top(x, y) |> dbg()) -> zombie
-      end
+    |> Enum.reduce({[], 0}, fn {x, y}, {zombies, minute} ->
+      infected = check_infected(grid, x, y)
 
-      {[new_zombies | newly_infected], minute + 1}
+      new_infections =
+        Enum.reduce(infected, [], fn {x, y}, acc ->
+          [check_infected(grid, x, y) | acc]
+        end)
+
+      {new_infections, minute + Enum.count(new_infections)}
     end)
-    |> dbg()
+    |> then(fn {_, minutes} -> minutes end)
+  end
+
+  def check_infected(grid, x, y) do
+    for dir <- [:top, :left, :right, :bottom],
+        {:ok, x, y} <- [lookup(grid, x, y, dir)],
+        neighbor = lookup(grid, x, y),
+        neighbor == 1 do
+      {x, y}
+    end
+  end
+
+  def lookup(grid, x, y) do
+    grid |> Enum.at(x) |> Enum.at(y)
+  end
+
+  def lookup(grid, x, y, direction) do
+    x_len = length(grid)
+    y_len = Enum.at(grid, 0, []) |> length
+
+    case direction(x, y, direction) do
+      {x, y} ->
+        case x >= 0 and x < x_len and y >= 0 and y < y_len do
+          true ->
+            {:ok, x, y}
+
+          false ->
+            :out_of_bounds
+        end
+
+      err ->
+        err
+    end
+  end
+
+  def direction(x, y, direction) do
+    case direction do
+      :top -> top(x, y)
+      :bottom -> bottom(x, y)
+      :left -> left(x, y)
+      :right -> right(x, y)
+      _ -> :invalid_direction
+    end
   end
 
   def top(x, y) do
