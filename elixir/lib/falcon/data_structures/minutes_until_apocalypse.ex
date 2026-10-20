@@ -41,30 +41,75 @@ defmodule Falcon.DataStructures.MinutesUntilApocalypse do
     # - Check its four neighbors for living people.
     # - Collect new infections into the next minute’s batch.
     # - Ensure the same person isn’t counted twice if two zombies reach them.
-    #
-    # After that reduce finishes, advance one minute and repeat with the new batch.
+
     zombies =
-      for {row, i} <- Enum.with_index(grid),
-          {col, ii} <- Enum.with_index(row),
-          col == 2 do
-        {i, ii}
+      for {row, x} <- Enum.with_index(grid),
+          {cell, y} <- Enum.with_index(row),
+          cell == 2 do
+        {x, y}
       end
 
-    zombies
-    |> Enum.reduce({[], 0}, fn {x, y}, {zombies, minute} ->
-      infected = check_infected(grid, x, y)
+    living =
+      for {row, x} <- Enum.with_index(grid),
+          {cell, y} <- Enum.with_index(row),
+          cell == 1,
+          into: MapSet.new() do
+        {x, y}
+      end
+      |> dbg()
 
-      new_infections =
-        Enum.reduce(infected, [], fn {x, y}, acc ->
-          [check_infected(grid, x, y) | acc]
-        end)
-
-      {new_infections, minute + Enum.count(new_infections)}
-    end)
-    |> then(fn {_, minutes} -> minutes end)
+    recur_minutes_until_apocalypse(grid, {zombies, 0, living})
   end
 
-  def check_infected(grid, x, y) do
+  # defp recur_minutes_until_apocalypse(_grid, {[], 0, living} = _acc) do
+  #   -1
+  # end
+
+  # defp recur_minutes_until_apocalypse(_grid, {[2], _minutes, _living} = _acc) do
+  #     0
+  #   end
+  #
+  #   defp recur_minutes_until_apocalypse(_grid, {[1], _minutes, _living} = _acc) do
+  #     -1
+  #   end
+  #
+  #   defp recur_minutes_until_apocalypse(_grid, {[0], _minutes, _living} = _acc) do
+  #     0
+  #   end
+  #
+  #   defp recur_minutes_until_apocalypse(_grid, {[[], []], _minutes, _living} = _acc) do
+  #     0
+  #   end
+
+  defp recur_minutes_until_apocalypse(_grid, {[], minutes, living} = _acc) do
+    if MapSet.size(living) == 0 do
+      minutes
+    else
+      -1
+    end
+  end
+
+  defp recur_minutes_until_apocalypse(grid, {acc, minutes, living} = _acc) do
+    next_infection =
+      acc
+      |> Enum.reduce([], fn {x, y}, zombies ->
+        check_infected(grid, x, y)
+        |> Enum.reduce(zombies, fn coor, collected ->
+          [coor | collected]
+        end)
+        |> Enum.uniq()
+      end)
+
+    remaining = MapSet.difference(living, MapSet.new(next_infection))
+
+    if Enum.count(next_infection) > 0 do
+      recur_minutes_until_apocalypse(grid, {next_infection, minutes + 1, remaining})
+    else
+      recur_minutes_until_apocalypse(grid, {next_infection, minutes, remaining})
+    end
+  end
+
+  defp check_infected(grid, x, y) do
     for dir <- [:top, :left, :right, :bottom],
         {:ok, x, y} <- [lookup(grid, x, y, dir)],
         neighbor = lookup(grid, x, y),
@@ -73,11 +118,11 @@ defmodule Falcon.DataStructures.MinutesUntilApocalypse do
     end
   end
 
-  def lookup(grid, x, y) do
+  defp lookup(grid, x, y) do
     grid |> Enum.at(x) |> Enum.at(y)
   end
 
-  def lookup(grid, x, y, direction) do
+  defp lookup(grid, x, y, direction) do
     x_len = length(grid)
     y_len = Enum.at(grid, 0, []) |> length
 
@@ -96,7 +141,7 @@ defmodule Falcon.DataStructures.MinutesUntilApocalypse do
     end
   end
 
-  def direction(x, y, direction) do
+  defp direction(x, y, direction) do
     case direction do
       :top -> top(x, y)
       :bottom -> bottom(x, y)
@@ -106,19 +151,19 @@ defmodule Falcon.DataStructures.MinutesUntilApocalypse do
     end
   end
 
-  def top(x, y) do
+  defp top(x, y) do
     {x - 1, y}
   end
 
-  def bottom(x, y) do
+  defp bottom(x, y) do
     {x + 1, y}
   end
 
-  def left(x, y) do
+  defp left(x, y) do
     {x, y - 1}
   end
 
-  def right(x, y) do
+  defp right(x, y) do
     {x, y + 1}
   end
 end

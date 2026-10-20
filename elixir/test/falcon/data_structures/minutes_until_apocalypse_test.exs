@@ -43,6 +43,10 @@ defmodule Falcon.DataStructures.MinutesUntilApocalypseTest do
     assert minutes_until_apocalypse([[2, 1]]) == 1
   end
 
+  test "multiple people are infected simultaneously in one minute" do
+    assert minutes_until_apocalypse([[0, 1, 0], [1, 2, 1], [0, 1, 0]]) == 1
+  end
+
   test "single row spreads right" do
     assert minutes_until_apocalypse([[2, 1, 1, 1, 1]]) == 4
   end
