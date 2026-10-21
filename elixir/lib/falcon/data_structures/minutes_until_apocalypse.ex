@@ -56,30 +56,9 @@ defmodule Falcon.DataStructures.MinutesUntilApocalypse do
           into: MapSet.new() do
         {x, y}
       end
-      |> dbg()
 
     recur_minutes_until_apocalypse(grid, {zombies, 0, living})
   end
-
-  # defp recur_minutes_until_apocalypse(_grid, {[], 0, living} = _acc) do
-  #   -1
-  # end
-
-  # defp recur_minutes_until_apocalypse(_grid, {[2], _minutes, _living} = _acc) do
-  #     0
-  #   end
-  #
-  #   defp recur_minutes_until_apocalypse(_grid, {[1], _minutes, _living} = _acc) do
-  #     -1
-  #   end
-  #
-  #   defp recur_minutes_until_apocalypse(_grid, {[0], _minutes, _living} = _acc) do
-  #     0
-  #   end
-  #
-  #   defp recur_minutes_until_apocalypse(_grid, {[[], []], _minutes, _living} = _acc) do
-  #     0
-  #   end
 
   defp recur_minutes_until_apocalypse(_grid, {[], minutes, living} = _acc) do
     if MapSet.size(living) == 0 do
@@ -94,6 +73,9 @@ defmodule Falcon.DataStructures.MinutesUntilApocalypse do
       acc
       |> Enum.reduce([], fn {x, y}, zombies ->
         check_infected(grid, x, y)
+        |> Enum.filter(fn coor ->
+          MapSet.member?(living, coor)
+        end)
         |> Enum.reduce(zombies, fn coor, collected ->
           [coor | collected]
         end)
