@@ -41,4 +41,5 @@ iex:
 exercises:
     @echo "data_structures/"
     @echo "  - Minutes Until Apocalypse (lib/falcon/data_structures/minutes_until_apocalypse.ex)"
+    @echo "  - Maximum Candy (lib/falcon/data_structures/max_candy.ex)"
     @echo "Run 'just test' to see which exercises pass/fail"

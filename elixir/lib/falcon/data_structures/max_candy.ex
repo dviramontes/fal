@@ -25,8 +25,18 @@ defmodule Falcon.DataStructures.MaxCandy do
   """
 
   @spec max_candy([non_neg_integer()]) :: non_neg_integer()
-  def max_candy(_houses) do
-    # TODO: Find the maximum candy total without visiting adjacent houses.
-    raise "not implemented"
+  def max_candy(houses) do
+    {prev_house, _two_back_best} =
+      Enum.reduce(houses, {0, 0}, fn current_candy, {prev_best, two_back_best} ->
+        take_total = current_candy + two_back_best
+
+        if prev_best > take_total do
+          {prev_best, prev_best}
+        else
+          {take_total, prev_best}
+        end
+      end)
+
+    prev_house
   end
 end
