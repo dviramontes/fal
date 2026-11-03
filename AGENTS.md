@@ -23,10 +23,10 @@ Teaching guidance adapted from [1cg's AI Agent Guidelines](https://gist.github.c
 
 ## Adding Exercises
 
-Include a problem description, constraints, examples, hints, and stub functions. Provide matching tests for expected behavior and edge cases.
+Keep exercise descriptions in their source files; do not duplicate exercise catalogs in READMEs or justfiles. Include a problem description, constraints, examples, hints, and stub functions. Provide matching tests for expected behavior and edge cases.
 
 Follow the source and test layout of the target language. See the [project structure](README.md#project-structure) and [Elixir exercise layout](elixir/README.md#exercise-layout).
 
 ## Project Reference
 
-The [README](README.md) owns project goals, prerequisites, setup, and the exercise catalog. Use its [test instructions](README.md#running-tests) for command locations and language-specific workflows.
+The [README](README.md) owns project goals, prerequisites, and setup. Use its [test instructions](README.md#running-tests) for command locations and language-specific workflows.

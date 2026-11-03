@@ -14,9 +14,3 @@ test-ds:
 # Clean generated test binaries
 clean:
     rm -f data_structures.test
-
-# Show exercise summary
-exercises:
-    @echo "data_structures/"
-    @echo "  - Minutes Until Apocalypse (minutes_until_apocalypse.odin)"
-    @echo "Run 'just test' to see which exercises pass/fail"
