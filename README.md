@@ -1,4 +1,4 @@
-# Falcon
+# FAL
 
 Interview practice in Go, Odin, and Elixir, covering data structures, concurrency, data processing, and financial algorithms. The goal is hands-on language practice across a broad range of problems.
 
@@ -6,18 +6,18 @@ Interview practice in Go, Odin, and Elixir, covering data structures, concurrenc
 
 Install the tools for the language you want to practice:
 
-| Language | Requirements | Setup |
-| --- | --- | --- |
-| Go | Go 1.23+ | From `go/`, run `go mod download` and `go install gotest.tools/gotestsum@latest` |
-| Odin | [Odin](https://odin-lang.org/docs/install/) | No dependency setup required |
-| Elixir | See [Elixir setup](elixir/README.md#setup) | See the language README |
+| Language | Requirements                                | Setup                                                                            |
+| -------- | ------------------------------------------- | -------------------------------------------------------------------------------- |
+| Go       | Go 1.23+                                    | From `go/`, run `go mod download` and `go install gotest.tools/gotestsum@latest` |
+| Odin     | [Odin](https://odin-lang.org/docs/install/) | No dependency setup required                                                     |
+| Elixir   | See [Elixir setup](elixir/README.md#setup)  | See the language README                                                          |
 
 Install [just](https://github.com/casey/just) to use the command recipes below.
 
 ## Project Structure
 
 ```
-falcon/
+fal/
 ├── go/
 │   ├── data_structures/    # Classic data structure problems
 │   ├── concurrency/        # Go concurrency patterns

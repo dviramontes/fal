@@ -1,7 +1,7 @@
-defmodule Falcon.DataStructures.ElapsedMinutesTest do
+defmodule Fal.DataStructures.ElapsedMinutesTest do
   use ExUnit.Case, async: true
 
-  import Falcon.DataStructures.ElapsedMinutes
+  import Fal.DataStructures.ElapsedMinutes
 
   test "first supplied example" do
     assert elapsed_minutes(["00:50", "01:10", "01:50", "01:10", "02:10"]) == 140

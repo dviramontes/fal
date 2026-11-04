@@ -1,4 +1,4 @@
-module falcon
+module fal
 
 go 1.23
 

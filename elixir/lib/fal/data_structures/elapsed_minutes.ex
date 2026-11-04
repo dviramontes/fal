@@ -1,4 +1,4 @@
-defmodule Falcon.DataStructures.ElapsedMinutes do
+defmodule Fal.DataStructures.ElapsedMinutes do
   @moduledoc """
   Exercise: Elapsed Minutes Across Daylight Saving Time
 

@@ -1,4 +1,4 @@
-defmodule Falcon.DataStructures.MinutesUntilApocalypse do
+defmodule Fal.DataStructures.MinutesUntilApocalypse do
   @moduledoc """
   Exercise: Minutes Until Apocalypse
 

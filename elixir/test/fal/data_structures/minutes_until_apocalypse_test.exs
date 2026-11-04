@@ -1,7 +1,7 @@
-defmodule Falcon.DataStructures.MinutesUntilApocalypseTest do
+defmodule Fal.DataStructures.MinutesUntilApocalypseTest do
   use ExUnit.Case, async: true
 
-  import Falcon.DataStructures.MinutesUntilApocalypse
+  import Fal.DataStructures.MinutesUntilApocalypse
 
   test "reachable example" do
     assert minutes_until_apocalypse([[2, 1, 1], [1, 1, 0], [0, 1, 1]]) == 4

@@ -1,4 +1,4 @@
-# Falcon - Elixir Exercises
+# Fal - Elixir Exercises
 
 default:
     @just --list
@@ -9,7 +9,7 @@ test:
 
 # Run data structure exercises
 test-ds:
-    mix test test/falcon/data_structures
+    mix test test/fal/data_structures
 
 # Run a test file or file:line
 test-one TARGET:

@@ -1,7 +1,7 @@
-defmodule Falcon.DataStructures.MaxCandyTest do
+defmodule Fal.DataStructures.MaxCandyTest do
   use ExUnit.Case, async: true
 
-  import Falcon.DataStructures.MaxCandy
+  import Fal.DataStructures.MaxCandy
 
   test "collects candy from the first example" do
     assert max_candy([2, 7, 9, 3, 1]) == 12

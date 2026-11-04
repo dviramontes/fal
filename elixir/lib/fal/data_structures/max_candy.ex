@@ -1,4 +1,4 @@
-defmodule Falcon.DataStructures.MaxCandy do
+defmodule Fal.DataStructures.MaxCandy do
   @moduledoc """
   Exercise: Maximum Candy
 
