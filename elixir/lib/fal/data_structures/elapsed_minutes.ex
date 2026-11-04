@@ -31,7 +31,6 @@ defmodule Fal.DataStructures.ElapsedMinutes do
   def elapsed_minutes(timestamps) do
     minutes =
       timestamps
-      |> dbg()
       |> Enum.map(fn ts ->
         hhmm = String.split(ts, ":")
         [hh, mm] = Enum.map(hhmm, &String.to_integer/1)
@@ -41,6 +40,7 @@ defmodule Fal.DataStructures.ElapsedMinutes do
     [first | _] = minutes
     last = List.last(minutes)
 
-    last - first
+    # accounting for rollback
+    last - first + 60
   end
 end
