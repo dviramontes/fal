@@ -28,8 +28,19 @@ defmodule Falcon.DataStructures.ElapsedMinutes do
   """
 
   @spec elapsed_minutes([String.t()]) :: non_neg_integer()
-  def elapsed_minutes(_timestamps) do
-    # TODO: Calculate the actual elapsed minutes across the rollback.
-    raise "not implemented"
+  def elapsed_minutes(timestamps) do
+    minutes =
+      timestamps
+      |> dbg()
+      |> Enum.map(fn ts ->
+        hhmm = String.split(ts, ":")
+        [hh, mm] = Enum.map(hhmm, &String.to_integer/1)
+        hh * 60 + mm
+      end)
+
+    [first | _] = minutes
+    last = List.last(minutes)
+
+    last - first
   end
 end
